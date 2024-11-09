@@ -12,9 +12,24 @@ app.get('/', (req, res) => {
   res.sendFile(import.meta.dirname + '/client.html');
 });
 
+
+app.get('/client', (req, res) => {
+ //res.send("responding");
+
+ //sends json file to client when a fetch request is sent to /client
+ res.sendFile(import.meta.dirname + '/test.json');
+ 
+ //runs function to request data from groq
+ main();
+
+});
+
+//starts listening on specified port
 app.listen(PORT, () =>{});
 
-async function main() {
+
+//asks groq prompt
+  async function main() {
   const completion = await groq.chat.completions
     .create({
       messages: [
@@ -30,4 +45,4 @@ async function main() {
     }); 
 }
 
-main();
+//main();

@@ -2,4 +2,20 @@
 <html>
     <title>My first ai groq sensai</title>
     <body>Hello World!</body>
+    <input id="clickMe" type="button" value="clickme" onclick="askGroq();" />
 </html>
+
+
+
+<script>
+    //currently sends get request to /client, which returns test.json
+   async function askGroq()
+    {
+        const response = await fetch('/client',{method:'GET'})
+        const json = await response.json();
+        //var thing = JSON.parse(json);
+    console.log(json);
+        
+    }
+
+</script>
