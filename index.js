@@ -12,6 +12,7 @@ app.use("/css",express.static("./node_modules/bootstrap/dist/css"));
 app.use("/js",express.static("./node_modules/bootstrap/dist/js"));
 
 app.use(express.static(path.join(import.meta.dirname, 'css')));
+app.use(express.static(path.join(import.meta.dirname, 'pictures')));
 
 //Initial connection
 app.get('/', (req, res) => {
