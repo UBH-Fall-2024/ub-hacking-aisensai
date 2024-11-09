@@ -1,0 +1,27 @@
+{
+  "name": "aisenai",
+  "version": "1.0.0",
+  "description": "gives out wisdom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-aisensai.git"
+  },
+  "keywords": [
+    "ai",
+    "sensei"
+  ],
+  "author": "Aaron Radliff Wolfgang Groetz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-aisensai/issues"
+  },
+  "homepage": "https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-aisensai#readme",
+  "type": "module",
+  "dependencies": {
+    "groq-sdk": "^0.7.0"
+  }
+}
