@@ -22,6 +22,7 @@
   "homepage": "https://github.com/UBH-Fall-2024/ub-hacking-create-your-repo-here-aisensai#readme",
   "type": "module",
   "dependencies": {
+    "express": "^4.21.1",
     "groq-sdk": "^0.7.0"
   }
 }
