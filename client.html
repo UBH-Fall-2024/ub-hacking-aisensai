@@ -7,10 +7,6 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel='stylesheet' href='/client.css' />
     </head>
-    <div class="scrollText">
-        <span class="type" style="--n:500">I'm just going to write a bunch of text so that we can actually test all this nonsense and be happy with the outcome because who knows how long the wisdom could actually be. I still don't know how long it could be and this will not be a STRESS test, continuing so that we can have some REAL wisdom.</span>
-    </div>
-    <div id= "output"></div>
     <input id="clickMe" type="button" value="clickme" onclick="askGroq();" />
 </html>
 
@@ -28,6 +24,9 @@ body {
 <script>
    async function askGroq()
     {
+        var oldTextDiv = document.getElementById('wisdomText');
+        if (oldTextDiv !== null) oldTextDiv.remove();
+
         const response = await fetch('/client',{method:'GET'})
         
         var wisdomArray = await response.json()
@@ -37,6 +36,16 @@ body {
         var trimmedWisdom = wisdom.replaceAll("\*", "")
         trimmedWisdom = trimmedWisdom.substring(wisdom.indexOf('.') + 2)
 
-        document.getElementById("output").textContent = trimmedWisdom
+        var textDiv = document.createElement('div');
+        textDiv.className = "scrollText"
+        textDiv.id = "wisdomText"
+       
+        var text = document.createElement('span')
+        text.innerHTML = trimmedWisdom;
+        text.className = "type"
+        text.setAttribute("style","--n:500");
+
+        textDiv.appendChild(text);   
+        document.body.append(textDiv)
     }
 </script>
