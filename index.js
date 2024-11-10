@@ -19,22 +19,30 @@ app.get('/', (req, res) => {
   res.sendFile(import.meta.dirname + '/client.html');
 });
 
+
+app.get('/client', async(req, res) => {
+  const groqMessage = await getGroq();
+  res.send(groqMessage.choices[0]?.message?.content.split("\n").filter(i => i.match(/\d/)) || "");
+});
+
+//starts listening on specified port
 app.listen(PORT, () =>{});
 
-async function main() {
-  const completion = await groq.chat.completions
-    .create({
-      messages: [
-        {
-          role: "user",
-          content: "Give me some sage wisdom",
-        },
-      ],
-      model: "llama3-8b-8192",
-    })
-    .then((chatCompletion) => {
-      console.log(chatCompletion.choices[0]?.message?.content || "");
-    }); 
+async function getGroq() {
+  const chatCompletion = await getGroqChatCompletion();
+  // Print the completion returned by the LLM.
+  //console.log(chatCompletion.choices[0]?.message?.content || "");
+  return chatCompletion;
 }
 
-main();
+async function getGroqChatCompletion() {
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: "Give me some sage wisdom that are NOT quotes, in a numbered list",
+      },
+    ],
+    model: "llama3-8b-8192",
+  });
+}
