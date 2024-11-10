@@ -6,20 +6,18 @@
     <input id="clickMe" type="button" value="clickme" onclick="askGroq();" />
 </html>
 
-
-
 <script>
-    //currently sends get request to /client, which returns test.json
    async function askGroq()
     {
         const response = await fetch('/client',{method:'GET'})
         
-        var outArray = await response.json()
-        //var out = await response.text();
-        console.log(outArray)
+        var wisdomArray = await response.json()
 
-        //document.getElementById("output").textContent=out;
-        
+        var wisdom = wisdomArray[Math.floor(Math.random() * wisdomArray.length)];
+
+        var trimmedWisdom = wisdom.replaceAll("\*", "")
+        trimmedWisdom = trimmedWisdom.substring(wisdom.indexOf('.') + 2)
+
+        document.getElementById("output").textContent = trimmedWisdom
     }
-
 </script>
