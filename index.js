@@ -1,11 +1,18 @@
 import Groq from "groq-sdk";
 import { key } from './key.js';
 import express from "express"
+import path from 'path'
 
 const PORT = 3000;
 const app = express();
 
 const groq = new Groq({apiKey:key});
+
+app.use("/css",express.static("./node_modules/bootstrap/dist/css"));
+app.use("/js",express.static("./node_modules/bootstrap/dist/js"));
+
+app.use(express.static(path.join(import.meta.dirname, 'css')));
+app.use(express.static(path.join(import.meta.dirname, 'pictures')));
 
 //Initial connection
 app.get('/', (req, res) => {
