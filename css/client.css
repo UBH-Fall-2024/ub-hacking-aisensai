@@ -1,5 +1,14 @@
+.fancyButton {
+  text-align: center;
+  width: 250px;
+  border: 3px solid #73AD21;
+  border-radius: 25px;
+  padding: 20px;
+  background-color: #000000;
+  color: white;
+}
+
 .scrollText {
-  margin: auto;
   text-align: center;
   width: 500px;
   border: 3px solid #73AD21;

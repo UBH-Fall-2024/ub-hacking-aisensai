@@ -7,7 +7,14 @@
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
         <link rel='stylesheet' href='/client.css' />
     </head>
-    <input id="clickMe" type="button" value="clickme" onclick="askGroq();" />
+    <body>
+        <div>
+            <img src="catSenseiExported.png" style="width: 25vw; height: 25vw;" alt="AI cat sensei">
+        </div>
+        <div>
+            <input id="clickMe" class="fancyButton" type="button" value="I need wisdom" onclick="askGroq();" />
+        </div>
+    </body>
 </html>
 
 <style>
@@ -17,6 +24,12 @@ body {
   background-attachment: fixed;
   background-size: cover;
   color: #FFFFFF;
+  display: flex; 
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-top: 5vw;
 }
 </style>
 <script src="/js/bootstrap.js"></script>
