@@ -2,6 +2,7 @@
 <html>
     <title>My first ai groq sensai</title>
     <body>Hello World!</body>
+    <div id= "output"></div>
     <input id="clickMe" type="button" value="clickme" onclick="askGroq();" />
 </html>
 
@@ -12,9 +13,12 @@
    async function askGroq()
     {
         const response = await fetch('/client',{method:'GET'})
-        const json = await response.json();
-        //var thing = JSON.parse(json);
-    console.log(json);
+        
+        var outArray = await response.json()
+        //var out = await response.text();
+        console.log(outArray)
+
+        //document.getElementById("output").textContent=out;
         
     }
 

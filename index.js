@@ -13,14 +13,18 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/client', (req, res) => {
+app.get('/client', async(req, res) => {
  //res.send("responding");
 
  //sends json file to client when a fetch request is sent to /client
- res.sendFile(import.meta.dirname + '/test.json');
+ //res.sendFile(import.meta.dirname + '/test.json');
  
  //runs function to request data from groq
- main();
+  
+  //console.log(chatCompletion.choices[0]?.message?.content || "");
+
+  const groqMessage = await getGroq();
+  res.send(groqMessage.choices[0]?.message?.content.split("\n").filter(i => i !== "") || "");
 
 });
 
@@ -28,21 +32,21 @@ app.get('/client', (req, res) => {
 app.listen(PORT, () =>{});
 
 
-//asks groq prompt
-  async function main() {
-  const completion = await groq.chat.completions
-    .create({
-      messages: [
-        {
-          role: "user",
-          content: "Give me some sage wisdom",
-        },
-      ],
-      model: "llama3-8b-8192",
-    })
-    .then((chatCompletion) => {
-      console.log(chatCompletion.choices[0]?.message?.content || "");
-    }); 
+ async function getGroq() {
+  const chatCompletion = await getGroqChatCompletion();
+  // Print the completion returned by the LLM.
+  //console.log(chatCompletion.choices[0]?.message?.content || "");
+  return chatCompletion;
 }
 
-//main();
+ async function getGroqChatCompletion() {
+  return groq.chat.completions.create({
+    messages: [
+      {
+        role: "user",
+        content: "Give me some sage wisdom",
+      },
+    ],
+    model: "llama3-8b-8192",
+  });
+}
